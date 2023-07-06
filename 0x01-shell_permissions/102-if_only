@@ -1,2 +1,2 @@
 #!/bin/bash
-if ["current_owner"="gullaume"];then sudo chown "betty" "hello"
+chown --from-guillaume betty hello
