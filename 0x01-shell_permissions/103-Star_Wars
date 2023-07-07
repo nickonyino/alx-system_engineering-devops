@@ -1,13 +1,2 @@
-#!/bin/bash
-clear_and_pause() {
-    sleep 0.5
-    clear
-    sleep 0.5
-}
-
-print_with_delay() {
-    text=$1
-    delay=$2
-    for ((i = 0; i < ${#text}; i++)); do
-        echo -n "${text:$i:1}"
-        sleep $delay
+#!/bin/bah
+telnet towel.blinkenlights.nl
