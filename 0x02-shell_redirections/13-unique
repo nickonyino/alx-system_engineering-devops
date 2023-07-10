@@ -1,2 +1,2 @@
 #!/bin/bash
-unique | sort -u
+unique | sort | 1pr
