@@ -1,0 +1,2 @@
+A host may use 0.0.0.0 as its own source address in IP when it has not yet been assigned an address, such as when sending the initial DHCPDISCOVER packet when using DHCP.
+There's a single file on your computer that serves as a small gateway between you and the web. It's called the hosts file. If you need to block websites or create personalized web shortcuts on Linux, you can just add or tweak a few lines in the file.
