@@ -9,7 +9,7 @@ echo -e "Updating and installing Nginx.\n"
 sudo apt-get update -y -qq && \
          sudo apt-get install nginx -y
 
-echo -e "\n Sets up  minor small things.\n"
+echo -e "\n Setting up some minor stuff.\n"
 
 # starts  nginx serviers
 sudo service nginx start
