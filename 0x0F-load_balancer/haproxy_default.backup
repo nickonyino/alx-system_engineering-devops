@@ -1,0 +1,16 @@
+
+defaults
+  mode http
+  timeout client 15s
+  timeout connect 10s
+  timeout server 15s
+  timeout http-request 10s
+
+frontend ismaelkiprop.tech
+    bind *:80
+    default_backend ismaelkiprop.tech
+
+backend solutionexpo.tech
+    balance roundrobin
+    server 477189-web-01 100.25.158.77:80 check
+    server 477189-web-02 100.25.111.97:80 check
