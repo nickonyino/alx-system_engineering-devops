@@ -1,15 +1,23 @@
 #!/usr/bin/env bash
 # Install and configure HAProxy on Ubuntu
 
-# Update and install HAProxy
+# Update package repositories and install HAProxy
 sudo apt-get update -y
 sudo apt-get install -y haproxy
 
 # Backup default HAProxy config
 sudo cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.bak
 
+# Define variables for IP addresses and hostnames
+WEB1_IP="100.25.158.77"
+WEB2_IP="100.25.111.97"
+WEB1_HOSTNAME="477189-web-01"
+WEB2_HOSTNAME="477189-web-02"
+FRONTEND_NAME="solutionexpo.tech"
+BACKEND_NAME="solutionexpo.tech"
+
 # Set up HAProxy configuration
-sudo tee /etc/haproxy/haproxy.cfg > /dev/null << 'EOF'
+sudo tee /etc/haproxy/haproxy.cfg > /dev/null <<EOF
 defaults
   mode http
   timeout client 15s
@@ -17,14 +25,14 @@ defaults
   timeout server 15s
   timeout http-request 10s
 
-frontend solutionexpo.tech
+frontend $FRONTEND_NAME
     bind *:80
-    default_backend solutionexpo.tech
+    default_backend $BACKEND_NAME
 
-backend ismaelkiprop.tech
+backend $BACKEND_NAME
     balance roundrobin
-    server 477189-web-01 100.25.158.77:80 check
-    server 477189-web-02 100.25.111.97:80 check
+    server $WEB1_HOSTNAME $WEB1_IP:80 check
+    server $WEB2_HOSTNAME $WEB2_IP:80 check
 EOF
 
 # Enable HAProxy to be managed by init script
@@ -32,3 +40,4 @@ echo "ENABLED=1" | sudo tee /etc/default/haproxy > /dev/null
 
 # Restart HAProxy service
 sudo service haproxy restart
+
